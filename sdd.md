@@ -467,7 +467,7 @@ Now it's time to break down the plan into executable tasks.
 
 **Command:**
 ```bash
-/speckit.tasks
+/speckit.tasks Break the plan into tasks
 ```
 
 Gemini will load all generated and provided documents and spec to generate [tasks.md](./specs/001-task-crud-operations/tasks.md) with checkboxes.
@@ -532,4 +532,144 @@ The [tasks.md](./specs/001-task-crud-operations/tasks.md) is a very detailled im
 ...
 ```
 
-**Validation:** Once again, review, iterate and edit `tasks.md` if needed. When satisfied, proceed.
+**Validation:** Once again, review, iterate and edit `tasks.md`. When satisfied, proceed.
+
+### Step 5: Implement
+
+Implement the code, assisted by AI.
+
+#### 1. Ensure consistency (optional)
+
+> [!IMPORTANT]
+> A best practice for **workflow Enforcement** is to ensure consistency before coding. This will allow to prevent hallucinations, omissions, etc.
+
+1.  Run `/speckit.analyze`.
+2.  **Action**: Check the report for "Hallucinations" (Plan mentions files not in Spec) or "Omissions" (Spec requirements missing in Plan).
+3.  **Fix**: Update `plan.md` or `spec.md` to resolve conflicts.
+4.  **Proceed**: Only start implementation when the analysis is green.
+
+> [!NOTE]
+> This is a **Global Check**. It analyzes the entire project state (Spec vs Plan, and Plan vs Code). You don't need to run it for every single task, but it's good practice to run it:
+> *   **Before** starting to code (to validate the Plan).
+> *   **Periodically** (e.g., after finishing a Phase) to ensure no drift.
+
+**Result**: 
+
+```markdown
+✦ I have completed the analysis of the project artifacts (spec.md, plan.md, tasks.md) against the constitution.md. The overall consistency and quality are high, but I have identified a few areas for improvement.
+
+  Here is the analysis report:
+
+  Specification Analysis Report
+
+  Findings:
+
+  ---
+  ID: AMB-1
+  Category: Ambiguity
+  Severity: MEDIUM
+  Location(s): spec.md
+  Summary: The edge case for handling excessively long task descriptions is identified but its behavior is not defined.
+  Recommendation: Define the behavior (e.g., truncate the description, return a '400 Bad Request' error).
+  ---
+
+  ---
+  ID: COV-1
+  Category: Coverage Gap
+  Severity: MEDIUM
+  Location(s): spec.md, tasks.md
+  Summary: The non-functional requirement for system recovery (NFR-002) has no corresponding task in tasks.md.
+  Recommendation: Add a task to the "Polish & Cross-Cutting Concerns" phase to document or script the backup and recovery procedure.
+  ---
+
+  ---
+  ID: COV-2
+  Category: Coverage Gap
+  Severity: LOW
+  Location(s): spec.md, tasks.md
+  Summary: The non-functional requirement for data volume (NFR-003) is not explicitly tested by any task.
+  Recommendation: Add an optional task to create a load test scenario that verifies system performance with 1000 tasks.
+  ---
+
+  Coverage Summary:
+
+  ---
+  Requirement Key: create-task
+  Has Task?: Yes
+  Task IDs: T006-T012
+  Notes: Fully covered by User Story 1 tasks.
+  ---
+
+  ---
+  Requirement Key: list-tasks
+  Has Task?: Yes
+  Task IDs: T013-T018
+  Notes: Fully covered by User Story 2 tasks.
+  ---
+
+  ---
+  Requirement Key: complete-task
+  Has Task?: Yes
+  Task IDs: T019-T024
+  Notes: Fully covered by User Story 3 tasks.
+  ---
+
+  ---
+  Requirement Key: reliability-uptime
+  Has Task?: Yes
+  Task IDs: T026, T027
+  Notes: Implicitly supported by robust testing and monitoring tasks.
+  ---
+
+  ---
+  Requirement Key: recovery-rto-rpo
+  Has Task?: No
+  Task IDs: -
+  Notes: GAP: No task for documenting or scripting the recovery process.
+  ---
+
+  ---
+  Requirement Key: data-volume
+  Has Task?: Partial
+  Task IDs: T027
+  Notes: Performance is generally tested, but no specific load test for 1000 tasks.
+  ---
+
+  ---
+  Requirement Key: observability
+  Has Task?: Yes
+  Task IDs: T026
+  Notes: Fully covered by the monitoring configuration task.
+  ---
+
+  Constitution Alignment Issues:
+  None. The artifacts show excellent alignment with all constitutional principles.
+
+  Unmapped Tasks:
+  None. All tasks are mapped to a specific phase or user story.
+
+  Metrics:
+
+   * Total Requirements: 10 (6 functional, 4 non-functional)
+   * Total Tasks: 28
+   * Coverage % (reqs with >=1 task): 90% (9/10 covered)
+   * Ambiguity Count: 1
+   * Duplication Count: 0
+   * Critical Issues Count: 0
+
+  ---
+
+  Next Actions
+
+  The analysis found no critical issues. You may proceed with implementation, but I recommend addressing the identified gaps to improve the robustness of the final product.
+
+  Would you like me to suggest concrete remediation edits for the top 2 issues (AMB-1 and COV-1)?
+```
+
+For now, this is fine, let's accept it:
+
+```bash
+no, let's accept it for now
+```
+
+If you choose to proceed with suggested remediations, your tasks will be updated and completed accordingly.
