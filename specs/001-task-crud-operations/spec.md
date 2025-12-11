@@ -5,6 +5,17 @@
 **Status**: Draft
 **Input**: User description: "# Feature: Task CRUD Operations..."
 
+## Clarifications
+
+### Session 2025-12-11
+- Q: What are the expected uptime and data recovery objectives for the Task CRUD API? → A: Uptime: 99.9%, RTO: 4 hours, RPO: 1 hour
+- Q: What is the expected behavior when attempting to complete an already completed task? → A: Idempotent success (no-op)
+- Q: What is the anticipated maximum number of tasks a single user is expected to manage? → A: 1000 tasks
+- Q: What level of operational monitoring (logging, metrics) is required for the Task CRUD API? → A: Detailed monitoring
+
+
+
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Create a Task (Priority: P1)
@@ -55,7 +66,7 @@ As a user, I want to mark a task as complete so that I can track my accomplishme
 
 ### Edge Cases
 
-- What happens when a user tries to complete a task that is already completed?
+- When a user tries to complete a task that is already completed, the system will treat this as an idempotent success (no-op).
 - What happens when the description provided for a new task is excessively long?
 
 ## Requirements *(mandatory)*
@@ -72,6 +83,15 @@ As a user, I want to mark a task as complete so that I can track my accomplishme
 ### Key Entities
 
 - **Task**: Represents a single to-do item. It has a unique identifier, a title, an optional description, a status indicating if it's completed, and a timestamp of its creation.
+
+### Non-Functional Requirements
+
+- **NFR-001 (Reliability)**: The service MUST maintain 99.9% uptime.
+- **NFR-002 (Recovery)**: The system must be recoverable within 4 hours (RTO), with a maximum data loss of 1 hour (RPO).
+- **NFR-003 (Data Volume)**: The system MUST support a maximum of 1000 tasks per user.
+- **NFR-004 (Observability)**: The system MUST implement detailed monitoring, including comprehensive logging of errors, warnings, and key operational events; performance metrics for API endpoints and database interactions; and basic tracing.
+
+
 
 ### Non-Goals
 
