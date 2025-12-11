@@ -883,3 +883,52 @@ To proceed with Phase 3, you can run:
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
+
+#### 3. Implement Phase 5
+
+```bash
+/speckit.implement Implement the Phase 5: 'User Story 3' as per plan.md
+```
+
+**Result**:
+
+```markdown
+✦ All tasks for Phase 5: User Story 3 - Complete a Task have been successfully completed and verified by tests.
+
+Phase 5 tasks completed:
+- [x] T019 [P] [US3] Write repository test for finding a task by ID and updating its status.
+- [x] T020 [P] [US3] Write service test for the completeTask logic, including handling for non-existent tasks.
+- [x] T021 [P] [US3] Write controller integration test for the PATCH /api/v1/tasks/{id}/complete endpoint.
+- [x] T022 [US3] Implement the findById and update methods in src/main/java/com/sdd/taskmanager/repository/TaskRepository.java.
+- [x] T023 [US3] Implement the completeTask method in src/main/java/com/sdd/taskmanager/service/TaskService.java.
+- [x] T024 [US3] Implement the completeTask endpoint in src/main/java/com/sdd/taskmanager/controller/TaskController.java.
+
+I am now waiting for your instructions to proceed to the next phase or any other commands you might have.
+```
+
+**Tasks**:
+
+```markdown
+//tasks.md
+
+## Phase 5: User Story 3 - Complete a Task (Priority: P3)
+
+**Goal**: Allow users to mark a task as complete.
+**Independent Test**: A user can call the `PATCH /api/v1/tasks/{id}/complete` endpoint and verify the task's `completed` status is updated to `true`.
+
+### Tests for User Story 3
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [x] T019 [P] [US3] Write repository test for finding a task by ID and updating its status.
+- [x] T020 [P] [US3] Write service test for the `completeTask` logic, including handling for non-existent tasks.
+- [x] T021 [P] [US3] Write controller integration test for the `PATCH /api/v1/tasks/{id}/complete` endpoint.
+
+### Implementation for User Story 3
+
+- [x] T022 [US3] Implement the `findById` and `update` methods in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
+- [x] T023 [US3] Implement the `completeTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T024 [US3] Implement the `completeTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.
