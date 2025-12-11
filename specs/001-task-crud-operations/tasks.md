@@ -31,16 +31,16 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] Write repository test for creating a task in `src/test/java/com/sdd/taskmanager/repository/TaskRepositoryTest.java`.
-- [ ] T007 [P] [US1] Write service test for the `createTask` logic in `src/test/java/com/sdd/taskmanager/service/TaskServiceTest.java`.
-- [ ] T008 [P] [US1] Write controller integration test for the `POST /api/v1/tasks` endpoint in `src/test/java/com/sdd/taskmanager/controller/TaskControllerTest.java`.
+- [x] T006 [P] [US1] Write repository test for creating a task in `src/test/java/com/sdd/taskmanager/repository/TaskRepositoryTest.java`.
+- [x] T007 [P] [US1] Write service test for the `createTask` logic in `src/test/java/com/sdd/taskmanager/service/TaskServiceTest.java`.
+- [x] T008 [P] [US1] Write controller integration test for the `POST /api/v1/tasks` endpoint in `src/test/java/com/sdd/taskmanager/controller/TaskControllerTest.java`.
 
 ### Implementation for User Story 1
 
-- [ ] T009 [P] [US1] Create the `CreateTaskRequest` DTO in `src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java` with validation annotations.
-- [ ] T010 [US1] Implement the `create` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java` using `JdbcTemplate`.
-- [ ] T011 [US1] Implement the `createTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
-- [ ] T012 [US1] Implement the `createTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+- [x] T009 [P] [US1] Create the `CreateTaskRequest` DTO in `src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java` with validation annotations.
+- [x] T010 [US1] Implement the `create` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java` using `JdbcTemplate`.
+- [x] T011 [US1] Implement the `createTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T012 [US1] Implement the `createTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
 
 ---
 
