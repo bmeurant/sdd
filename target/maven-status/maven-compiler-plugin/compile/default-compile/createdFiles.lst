@@ -1,0 +1,8 @@
+com/sdd/taskmanager/service/TaskServiceImpl.class
+com/sdd/taskmanager/service/TaskService.class
+TaskController.class
+com/sdd/taskmanager/model/Task.class
+com/sdd/taskmanager/repository/JdbcTaskRepository.class
+com/sdd/taskmanager/dto/CreateTaskRequest.class
+com/sdd/taskmanager/TaskManagerApiApplication.class
+com/sdd/taskmanager/repository/TaskRepository.class

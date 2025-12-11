@@ -1,0 +1,8 @@
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/TaskManagerApiApplication.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/controller/TaskController.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/model/Task.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/repository/JdbcTaskRepository.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/repository/TaskRepository.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/service/TaskService.java
+/home/a208574/workspace/sdd/src/main/java/com/sdd/taskmanager/service/TaskServiceImpl.java

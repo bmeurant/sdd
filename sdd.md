@@ -834,3 +834,52 @@ To proceed with Phase 3, you can run:
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
+
+#### 3. Implement Phase 4
+
+```bash
+/speckit.implement Implement the Phase 4: 'User Story 2' as per plan.md
+```
+
+**Result**:
+
+```markdown
+✦ All tasks for Phase 4: User Story 2 - List All Tasks have been successfully completed and verified by tests.
+
+  Phase 4 tasks completed:
+   - [x] T013 [P] [US2] Write repository test for finding all tasks.
+   - [x] T014 [P] [US2] Write service test for the findAllTasks logic.
+   - [x] T015 [P] [US2] Write controller integration test for the GET /api/v1/tasks endpoint.
+   - [x] T016 [US2] Implement the findAll method in src/main/java/com/sdd/taskmanager/repository/TaskRepository.java.
+   - [x] T017 [US2] Implement the findAllTasks method in src/main/java/com/sdd/taskmanager/service/TaskService.java.
+   - [x] T018 [US2] Implement the findAllTasks endpoint in src/main/java/com/sdd/taskmanager/controller/TaskController.java.
+
+  I am now waiting for your instructions to proceed to the next phase or any other commands you might have.
+```
+
+**Tasks**:
+
+```markdown
+//tasks.md
+
+## Phase 4: User Story 2 - List All Tasks (Priority: P2)
+
+**Goal**: Allow users to see all created tasks.
+**Independent Test**: A user can call the `GET /api/v1/tasks` endpoint and receive a list of all previously created tasks.
+
+### Tests for User Story 2
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [x] T013 [P] [US2] Write repository test for finding all tasks.
+- [x] T014 [P] [US2] Write service test for the `findAllTasks` logic.
+- [x] T015 [P] [US2] Write controller integration test for the `GET /api/v1/tasks` endpoint.
+
+### Implementation for User Story 2
+
+- [x] T016 [US2] Implement the `findAll` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
+- [x] T017 [US2] Implement the `findAllTasks` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T018 [US2] Implement the `findAllTasks` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.

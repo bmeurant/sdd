@@ -1,0 +1,4 @@
+com/sdd/taskmanager/service/TaskServiceTest.class
+com/sdd/taskmanager/TaskManagerApiApplicationTests.class
+com/sdd/taskmanager/controller/TaskControllerTest.class
+com/sdd/taskmanager/repository/TaskRepositoryTest.class
