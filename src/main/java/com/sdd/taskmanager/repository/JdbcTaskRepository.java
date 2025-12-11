@@ -17,10 +17,17 @@ public class JdbcTaskRepository implements TaskRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    /**
+     * Constructs a new JdbcTaskRepository with the given JdbcTemplate.
+     * @param jdbcTemplate The JdbcTemplate to use for database operations.
+     */
     public JdbcTaskRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Task create(Task task) {
         UUID id = UUID.randomUUID();
@@ -40,6 +47,9 @@ public class JdbcTaskRepository implements TaskRepository {
         return createdTask;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Task> findById(UUID id) {
         String sql = "SELECT id, title, description, completed, created_at FROM tasks WHERE id = ?";
@@ -50,12 +60,18 @@ public class JdbcTaskRepository implements TaskRepository {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Task> findAll() {
         String sql = "SELECT id, title, description, completed, created_at FROM tasks";
         return jdbcTemplate.query(sql, this::mapRowToTask);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(Task task) {
         String sql = "UPDATE tasks SET title = ?, description = ?, completed = ? WHERE id = ?";
@@ -67,6 +83,13 @@ public class JdbcTaskRepository implements TaskRepository {
         );
     }
 
+    /**
+     * Maps a row from the ResultSet to a Task object.
+     * @param rs The ResultSet to map.
+     * @param rowNum The number of the current row.
+     * @return A Task object mapped from the current row.
+     * @throws SQLException if a SQL error occurs.
+     */
     private Task mapRowToTask(ResultSet rs, int rowNum) throws SQLException {
         return new Task(
                 UUID.fromString(rs.getString("id")),

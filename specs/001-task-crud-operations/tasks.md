@@ -88,10 +88,10 @@
 
 ## Phase N: Polish & Cross-Cutting Concerns
 
-- [ ] T025 [P] Add Javadoc to all new public methods in the `controller`, `service`, and `repository` packages.
-- [ ] T026 [P] Configure detailed monitoring (logging, metrics) as per NFR-004.
-- [ ] T027 Run `mvn test` and verify code coverage is >= 80%.
-- [ ] T028 Validate all API endpoints using the `quickstart.md` guide.
+- [x] T025 [P] Add Javadoc to all new public methods in the `controller`, `service`, and `repository` packages.
+- [x] T026 [P] Configure detailed monitoring (logging, metrics) as per NFR-004.
+- [x] T027 Run `mvn test` and verify code coverage is >= 80%.
+- [x] T028 Validate all API endpoints using the `quickstart.md` guide.
 
 ---
 

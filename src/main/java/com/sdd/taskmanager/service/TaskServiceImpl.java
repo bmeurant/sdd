@@ -14,25 +14,41 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
 
+    /**
+     * Constructs a new TaskServiceImpl with the given TaskRepository.
+     * @param taskRepository The repository responsible for task data access.
+     */
     public TaskServiceImpl(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Task createTask(Task task) {
         return taskRepository.create(task);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Task> findTaskById(UUID id) {
         return taskRepository.findById(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Task> findAllTasks() {
         return taskRepository.findAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Task completeTask(UUID id) {
         Task task = taskRepository.findById(id)

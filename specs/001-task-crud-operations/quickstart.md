@@ -25,7 +25,7 @@ This guide provides instructions on how to build, run, and interact with the Tas
 Once the project is built, you can run the application using the following command:
 
 ```sh
-java -jar target/task-manager-api-1.0.0.jar
+java -jar target/taskmanager-0.0.1-SNAPSHOT.jar
 ```
 
 The API will start on `http://localhost:8080`.
