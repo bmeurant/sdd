@@ -191,7 +191,7 @@ All files are now in sync.
 
 We define the feature functionally.
 
-#### 1. Execute this command to create the spec
+#### 1. Create the spec
 
 ```bash
 /speckit.specify --new "Task CRUD Operations"
@@ -205,7 +205,7 @@ We define the feature functionally.
 ✦ I am ready for your command. Please describe the feature you would like me to specify.
 ```
         
-#### 2. In any case, provide this answer (using `CTRL-X`):
+In any case, provide this answer (using `CTRL-X`):
 
 ```markdown
 # Feature: Task CRUD Operations
@@ -298,7 +298,7 @@ You can also see that a corresponding checklist has been created for your featur
 > **Manual Edits?** If you manually modify `spec.md` (e.g., removing a requirement), the previous checklist becomes stale.
 > **Force Re-evaluation**: Run `/speckit.checklist` to generate a fresh analysis of your current `spec.md` before proceeding.
 
-#### 3. Validate with Quality Gate (optional)
+#### 2. Validate with Quality Gate (optional)
 
 The checklist generated at the end of the `specify` command is your **Quality Gate**. If not satisfied, the workflow should be blocked.
 
@@ -420,7 +420,7 @@ To build the technical plan based on this specification, you can run:
 `/speckit.plan Create a plan for the spec. I am building with...`
 ```
 
-#### 2. Execute this command to create the plan for this spec
+#### 2. Create the plan for this spec
 
 ```bash
 /speckit.plan Create a plan for the spec.
@@ -460,3 +460,76 @@ To break down this plan into actionable tasks, you can run:
 ```
 
 **Validation:** Review `plan.md` and other docs. If satisfied, proceed.
+
+### Step 4: Task
+
+Now it's time to break down the plan into executable tasks.
+
+**Command:**
+```bash
+/speckit.tasks
+```
+
+Gemini will load all generated and provided documents and spec to generate [tasks.md](./specs/001-task-crud-operations/tasks.md) with checkboxes.
+
+**Result**: 
+
+```markdown
+✦ The actionable task list for 'Task CRUD Operations' has been successfully generated.
+
+  Details:
+
+   * Generated Task List: /home/a208574/workspace/sdd/specs/001-task-crud-operations/tasks.md
+
+  Task Summary:
+
+   * Total Task Count: 28
+   * Tasks by User Story:
+       * US1 (Create Task): 7 tasks (3 test, 4 implementation)
+       * US2 (List Tasks): 6 tasks (3 test, 3 implementation)
+       * US3 (Complete Task): 6 tasks (3 test, 3 implementation)
+       * Setup/Foundational: 5 tasks
+       * Polish/Cross-Cutting: 4 tasks
+   * Parallel Opportunities: Tasks marked with [P] are identified as parallelizable, primarily within test writing and some setup/polish activities.
+   * Independent Test Criteria: Each user story phase explicitly defines independent test criteria, ensuring that individual stories can be verified
+     incrementally.
+   * Suggested MVP Scope: Implementing User Story 1 (Create a Task), along with the Setup and Foundational phases, constitutes a minimal viable product,
+     encompassing tasks T001 through T012.
+
+  The implementation plan is now broken down into a detailed, dependency-ordered, and actionable list of tasks, ready for execution.
+
+  Next Suggested Command:
+
+  To begin implementing the feature based on this task list, you can run:
+  /speckit.implement Start the implementation in phases
+```
+
+The [tasks.md](./specs/001-task-crud-operations/tasks.md) is a very detailled implementation sequence, organized by User Story:
+
+```markdown
+...
+
+## Phase 3: User Story 1 - Create a Task (Priority: P1) 🎯 MVP
+
+**Goal**: Allow users to create a new task.
+**Independent Test**: A user can call the `POST /api/v1/tasks` endpoint and verify the new task is created and returned with a 201 status.
+
+### Tests for User Story 1
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T006 [P] [US1] Write repository test for creating a task in `src/test/java/com/sdd/taskmanager/repository/TaskRepositoryTest.java`.
+- [ ] T007 [P] [US1] Write service test for the `createTask` logic in `src/test/java/com/sdd/taskmanager/service/TaskServiceTest.java`.
+- [ ] T008 [P] [US1] Write controller integration test for the `POST /api/v1/tasks` endpoint in `src/test/java/com/sdd/taskmanager/controller/TaskControllerTest.java`.
+
+### Implementation for User Story 1
+
+- [ ] T009 [P] [US1] Create the `CreateTaskRequest` DTO in `src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java` with validation annotations.
+- [ ] T010 [US1] Implement the `create` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java` using `JdbcTemplate`.
+- [ ] T011 [US1] Implement the `createTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [ ] T012 [US1] Implement the `createTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+
+...
+```
+
+**Validation:** Once again, review, iterate and edit `tasks.md` if needed. When satisfied, proceed.
