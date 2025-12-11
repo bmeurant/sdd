@@ -673,3 +673,75 @@ no, let's accept it for now
 ```
 
 If you choose to proceed with suggested remediations, your tasks will be updated and completed accordingly.
+
+> [!TIP]
+> **Granularity: One by One or All at Once?**
+> *   **Best Practice**: Execute tasks **one by one** (e.g., just "T001"). This minimizes errors and makes verification easier.
+> *   **Advanced**: For simple, related tasks (like "Phase 1: Setup"), you *can* group them: "Execute Phase 1 (T001, T002, T003)". But if the AI fails, it's harder to debug.
+
+**Workflow with Gemini CLI:**
+1.  Open `tasks.md` and identify the next task (e.g., "Create TaskRepository").
+2.  **Copy** the task description.
+3.  Pass it to the Gemini CLI.
+
+**Workflow with VSCode + Gemini Code Assist:**
+1.  Open `tasks.md`.
+2.  **Highlight** the specific task line (e.g., `- [ ] Create TaskRepository interface`).
+3.  Open the Gemini Chat (or use the "Add to Context" feature).
+4.  Prompt: "Implement this selected task following plan.md and constitution.md".
+5.  Gemini will generate the code in the chat or directly in a new file.
+
+For the following steps we will rely on the tasks defined in [tasks.md](./specs/001-task-crud-operations/tasks.md).
+
+#### 2. Implement Phase 1
+
+```bash
+/speckit.implement Implement the Phase 1: 'Setup' as per plan.md
+```
+
+> [!NOTE]
+> We reference `plan.md` because it contains the **technical blueprint** (methods, types, logic). `tasks.md` is just the checklist of **what** to do, but `plan.md` tells the AI **how** to do it.*
+
+Some verifications will be made before the implementation:
+
+```markdown
+| Checklist        | Total | Completed | Incomplete | Status |
+|------------------|-------|-----------|------------|--------|
+| requirements.md  | 16    | 16        | 0          | ✓ PASS |
+
+All checklists are complete. Proceeding with implementation...
+```
+
+*Allow actions & Accept modifications from Gemini when asked*
+
+**Result**:
+
+```markdown
+Phase 1: Setup has been successfully completed.
+
+All initial project setup tasks have been executed, including:
+*   Initializing the Spring Boot project.
+*   Adding required Maven dependencies.
+*   Configuring the H2 database and server port.
+
+**Next Step:** Implement **Phase 2: Foundational**.
+
+To proceed with Phase 2, you can run:
+`/speckit.implement Implement the Phase 2: 'Foundational' as per plan.md`
+```
+
+Tasks have also been marked as complete:
+
+```markdown
+//tasks.md
+
+## Phase 1: Setup
+
+**Purpose**: Project initialization and basic structure.
+
+- [x] T001 Initialize a new Spring Boot project using Maven in the repository root.
+- [x] T002 Add required dependencies to `pom.xml`: `spring-boot-starter-web`, `spring-boot-starter-jdbc`, `h2`, `spring-boot-starter-test`, `jakarta.validation:jakarta.validation-api`.
+- [x] T003 Configure the H2 database and server port in `src/main/resources/application.properties`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.
