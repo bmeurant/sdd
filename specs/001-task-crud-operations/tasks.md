@@ -17,8 +17,8 @@
 
 **Purpose**: Core data structure and database schema.
 
-- [ ] T004 Create the `Task` model class in `src/main/java/com/sdd/taskmanager/model/Task.java`.
-- [ ] T005 Define the database schema for the `tasks` table in `src/main/resources/schema.sql`.
+- [x] T004 Create the `Task` model class in `src/main/java/com/sdd/taskmanager/model/Task.java`.
+- [x] T005 Define the database schema for the `tasks` table in `src/main/resources/schema.sql`.
 
 ---
 
