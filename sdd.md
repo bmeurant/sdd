@@ -969,3 +969,46 @@ I am now waiting for your instructions.
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
+
+### 6. Run & Verify
+
+Finally, see your creation in action!
+
+#### Start the Application
+```bash
+mvn spring-boot:run
+```
+
+#### Test the API
+Open a new terminal and use `curl` to test the endpoints:
+
+**1. Create a Task**
+```bash
+curl -X POST http://localhost:8080/api/v1/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Finish SDD Tutorial", "description": "Follow the steps to build the API"}'
+```
+
+**2. List Tasks**
+```bash
+curl http://localhost:8080/api/v1/tasks
+```
+
+**3. Complete a Task** (Replace `{id}` with the UUID from the list response)
+```bash
+curl -X PATCH http://localhost:8080/api/v1/tasks/{id}/complete
+```
+
+#### Finalize: Merge to Main
+Once you have verified that the application works as expected:
+
+```bash
+# Switch back to main
+git checkout main
+
+# Merge the feature branch
+git merge 001-task-crud-operations
+
+# (Optional) Delete the feature branch
+git branch -d 001-task-crud-operations
+```
