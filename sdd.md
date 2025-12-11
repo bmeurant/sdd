@@ -311,3 +311,110 @@ The checklist generated at the end of the `specify` command is your **Quality Ga
 3.  **Result**: The tool **should** block you.
 4.  **Fix**: Check all boxes to explicitly "sign off" the Spec.
 5.  **Proceed**: Now run `/speckit.plan` again.
+
+### Step 3: Plan
+
+The AI generates a technical plan based on the `constitution.md` and `spec.md`.
+
+#### 1. Refinement (optional)
+
+A best practice before planning is to ensure ensure your spec is unambiguous.
+
+1.  Run `/speckit.clarify`.
+2.  **Action**: The tool will ask questions about ambiguities (e.g., "What is the max length of content?").
+3.  **Fix**: Update `spec.md` with the answers.
+4.  **Repeat** until `/speckit.clarify` returns "No ambiguities found". This ensures the AI has a solid foundation for the Plan.
+
+**Example**:
+
+```markdown
+Question 3: Data Volume / Scale
+
+Context: The specification mentions listing 'all tasks' and handling '50 concurrent users', but doesn't specify an anticipated upper limit for the number
+of tasks a single user might have. This information is crucial for optimizing data storage and retrieval performance.
+
+What we need to know: What is the anticipated maximum number of tasks a single user is expected to manage?
+
+Suggested: 1000 tasks - This is a common upper limit for simple personal task management tools, providing a reasonable baseline for initial design
+without over-engineering for extreme cases.
+
+Format: Short answer (<=5 words). You can accept the suggestion by saying "yes" or "suggested", or provide your own answer.
+```
+
+For each of your choices, the spec will be updated with your answers
+
+**Result**:
+
+```markdown
+// specs/001-task-crud-operations/spec.md
+
+...
+
+## Clarifications
+
+### Session 2025-12-11
+- Q: What are the expected uptime and data recovery objectives for the Task CRUD API? → A: Uptime: 99.9%, RTO: 4 hours, RPO: 1 hour
+- Q: What is the expected behavior when attempting to complete an already completed task? → A: Idempotent success (no-op)
+- Q: What is the anticipated maximum number of tasks a single user is expected to manage? → A: 1000 tasks
+
+...
+
+### Non-Functional Requirements
+
+- **NFR-001 (Reliability)**: The service MUST maintain 99.9% uptime.
+- **NFR-002 (Recovery)**: The system must be recoverable within 4 hours (RTO), with a maximum data loss of 1 hour (RPO).
+- **NFR-003 (Data Volume)**: The system MUST support a maximum of 1000 tasks per user.
+
+...
+```
+
+The session should end with a summary:
+
+```markdown
+The clarification process has concluded as the maximum of 5 questions has been reached.
+
+Question 5 regarding long-term scalability targets remains unanswered and will be marked as 'Deferred'.
+This means the current specification does not contain explicit long-term scalability goals beyond the initial 50
+concurrent users. This might be addressed later in the planning phase or by re-running the clarification process.
+
+---                                                                                                                    
+
+**Clarification Session Summary:**
+
+*   **Questions Asked:** 5
+*   **Questions Answered:** 5
+*   **Path to Updated Spec:** ./specs/001-task-crud-operations/spec.md
+*   **Sections Touched:**
+    * Clarifications
+    *   Non-Functional Requirements
+    *   Edge Cases
+
+**Coverage Summary:**
+
+| Category                       | Status                                                                    |
+| :----------------------------- | :------------------------------------------------------------------------ |
+| Functional Scope & Behavior    | Clear                                                                     |
+| Domain & Data Model            | Resolved (Data Volume / Scale)                                            |
+| Interaction & UX Flow          | Resolved (Error/empty/loading states)                                     |
+| Non-Functional Quality Attributes | Resolved (Reliability & Availability, Observability), Deferred (Scalability, Security & Privacy, Compliance) |
+| Integration & External Dependencies | Clear                                                                     |
+| Edge Cases & Failure Handling  | Resolved (Negative scenarios), Outstanding (Rate limiting / throttling, Conflict resolution) |
+| Constraints & Tradeoffs        | Clear                                                                     |
+| Terminology & Consistency      | Clear                                                                     |
+| Completion Signals             | Clear                                                                     |
+| Misc / Placeholders            | Clear                                                                     |
+
+---                                                                                                                    
+
+**Recommendation:**                                                                                                    
+
+You can now proceed to the planning phase. However, be aware that the specification still has some 'Deferred' and
+'Outstanding' areas, notably long-term scalability targets, security & privacy considerations, compliance, rate 
+limiting, and conflict resolution. These might need further discussion during planning or a dedicated clarification
+session later.
+
+**Suggested Next Command:**
+
+To build the technical plan based on this specification, you can run: 
+`/speckit.plan Create a plan for the spec. I am building with...`
+```
