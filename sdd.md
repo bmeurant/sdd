@@ -186,3 +186,128 @@ All files are now in sync.
 > [!WARNING]
 > **Syncing Changes**: If you edit `constitution.md` manually, you **must** run `/speckit.constitution` again.
 > This ensures that the changes are propagated to the `.specify/templates/` (e.g., updating the Plan template to reflect new architectural rules) and the AI's system prompts.
+
+### Step 2: Specify
+
+We define the feature functionally.
+
+#### 1. Execute this command to create the spec
+
+```bash
+/speckit.specify --new "Task CRUD Operations"
+```
+
+**Result**: Gemini should answer something like this:
+
+*Note: Remember that this is a LLM so answers can be different.*
+
+```markdown
+✦ I am ready for your command. Please describe the feature you would like me to specify.
+```
+        
+#### 2. In any case, provide this answer (using `CTRL-X`):
+
+```markdown
+# Feature: Task CRUD Operations
+
+## Context
+Users need a simple way to manage their daily tasks (create, list, complete) via a REST API.
+
+## Requirements
+1.  **Create Task**:
+    - `POST /api/v1/tasks`
+    - Payload: `title` (String), `description` (String, optional).
+    - Response: `201 Created` with the created Task.
+2.  **List Tasks**:
+    - `GET /api/v1/tasks`
+    - Returns a list of all tasks.
+3.  **Complete Task**:
+    - `PATCH /api/v1/tasks/{id}/complete`
+    - Marks the task as completed.
+4.  **Data Model**:
+    - `id` (UUID), `title`, `description`, `completed` (boolean), `createdAt` (datetime).
+
+## Non-Goals
+- User authentication.
+- Complex filtering or pagination (for now).
+```
+
+> [!NOTE]
+> As required by [SpecKit](https://github.com/github/spec-kit/blob/main/spec-driven.md#the-speckitspecify-command), Gemini will perform some tasks : numbering the feature, creating a branch, copying and customizing the specification template and creating the `specs/[branch-name]/` structure. Depending on your will, it can also manage commit and push for you.
+
+*Allow actions & Accept modifications from Gemini if asked*
+
+**Result**:
+
+```markdown
+✦ All steps are complete. I've created the branch and files, written the specification, and passed the validation
+  checklist. I'll now report completion, providing the branch name and spec file path, and confirm it's ready for the
+  next step.All steps are complete: feature branch and files created, specification written, validation checklist
+  passed. I will now report completion, providing the branch name and spec file path, confirming readiness for next
+  steps.
+```
+
+> [!IMPORTANT]
+> **Git Workflow**: This command automatically creates a new feature branch (e.g., `001-task-crud-operations`).
+> **Action**: Switch to this branch (`git checkout 001-task-crud-operations`) if not already done automatically. You will stay on this branch for the Plan, Task, and Execute phases.
+
+This created a `spec.md` file. See [spec.md](./specs/001-task-crud-operations/spec.md)
+
+You can also see that a corresponding checklist has been created for your feature to ensure it passes all requirements. See [requirement.md](./specs/001-task-crud-operations/checklists/requirements.md):
+
+```markdown
+# Specification Quality Checklist: Task CRUD Operations
+
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2025-12-11
+**Feature**: [spec.md](./spec.md)
+
+## Content Quality
+
+- [x] No implementation details (languages, frameworks, APIs)
+- [x] Focused on user value and business needs
+- [x] Written for non-technical stakeholders
+- [x] All mandatory sections completed
+
+## Requirement Completeness
+
+- [x] No [NEEDS CLARIFICATION] markers remain
+- [x] Requirements are testable and unambiguous
+- [x] Success criteria are measurable
+- [x] Success criteria are technology-agnostic (no implementation details)
+- [x] All acceptance scenarios are defined
+- [x] Edge cases are identified
+- [x] Scope is clearly bounded
+- [x] Dependencies and assumptions identified
+
+## Feature Readiness
+
+- [x] All functional requirements have clear acceptance criteria
+- [x] User scenarios cover primary flows
+- [x] Feature meets measurable outcomes defined in Success Criteria
+- [x] No implementation details leak into specification
+
+## Notes
+
+- All validation checks passed. The specification is ready for the planning phase.
+```
+
+**Validation:** Review `spec.md`. If satisfied, proceed.
+
+> [!WARNING]
+> **Manual Edits?** If you manually modify `spec.md` (e.g., removing a requirement), the previous checklist becomes stale.
+> **Force Re-evaluation**: Run `/speckit.checklist` to generate a fresh analysis of your current `spec.md` before proceeding.
+
+#### 3. Validate with Quality Gate (optional)
+
+The checklist generated at the end of the `specify` command is your **Quality Gate**. If not satisfied, the workflow should be blocked.
+
+> [!IMPORTANT]
+> Sometimes, AI agents are "over-helpful" and might proceed if they find the spec clear enough despite the unchecked box. This is **Soft Enforcement**. In a strict CI/CD pipeline using the CLI directly, this would be a **Hard Error**. See [Step 8. Going Further: CI/CD Integration](#step-8-going-further-ci-cd-integration)
+
+**Demonstration of Workflow Enforcement:**
+1.  **Action**: Deliberately **uncheck** one box in the generated checklist.
+2.  **Try to Proceed**: Run `/speckit.plan`.
+3.  **Result**: The tool **should** block you.
+4.  **Fix**: Check all boxes to explicitly "sign off" the Spec.
+5.  **Proceed**: Now run `/speckit.plan` again.
