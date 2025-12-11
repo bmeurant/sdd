@@ -318,7 +318,8 @@ The AI generates a technical plan based on the `constitution.md` and `spec.md`.
 
 #### 1. Refinement (optional)
 
-A best practice before planning is to ensure ensure your spec is unambiguous.
+> [!IMPORTANT]
+> A best practice before planning is to ensure ensure your spec is unambiguous.
 
 1.  Run `/speckit.clarify`.
 2.  **Action**: The tool will ask questions about ambiguities (e.g., "What is the max length of content?").
@@ -382,7 +383,7 @@ concurrent users. This might be addressed later in the planning phase or by re-r
 **Clarification Session Summary:**
 
 *   **Questions Asked:** 5
-*   **Questions Answered:** 5
+*   **Questions Answered:** 4
 *   **Path to Updated Spec:** ./specs/001-task-crud-operations/spec.md
 *   **Sections Touched:**
     * Clarifications
@@ -418,3 +419,44 @@ session later.
 To build the technical plan based on this specification, you can run: 
 `/speckit.plan Create a plan for the spec. I am building with...`
 ```
+
+#### 2. Execute this command to create the plan for this spec
+
+```bash
+/speckit.plan Create a plan for the spec.
+```
+
+*Note: If automatic AI integration isn't configured in `specify`, copy `spec.md` and `constitution.md` and ask Gemini CLI or GCA: "Generate a detailed implementation plan for this spec, strictly following the constitution."*
+
+**Result**:
+
+The plan command will generate a very detailled plan and technical documentation / specifications for the current spec including, in our case [data-model.md](./specs/001-task-crud-operations/data-model.md), [quickstart.md](./specs/001-task-crud-operations/quickstart.md), [research.md](./specs/001-task-crud-operations/research.md), [openapi.yaml](./specs/001-task-crud-operations/contracts/openapi.yaml).
+
+And the generated [plan.md](./specs/001-task-crud-operations/plan.md) including project structure, structure decisions, etc.
+
+```markdown
+The implementation planning for 'Task CRUD Operations' is complete.
+
+**Details:**
+
+*   **Feature Branch:** `001-task-crud-operations`
+*   **Implementation Plan (filled):** `./specs/001-task-crud-operations/plan.md`
+
+**Generated Design Artifacts:**
+
+*   **Research Document:** `./specs/001-task-crud-operations/research.md` (no specific research required, as noted in the document)
+*   **Data Model Definition:** `./specs/001-task-crud-operations/data-model.md`
+*   **API Contract (OpenAPI):** `./specs/001-task-crud-operations/contracts/openapi.yaml`
+*   **Quickstart Guide:** `./specs/001-task-crud-operations/quickstart.md`
+
+**Agent Context Update:** Your agent's context (`GEMINI.md`) has been updated with the project's technical details (Java 21, Spring Boot 3.5.8, H2, Maven).
+
+The feature specification has been thoroughly planned and designed.
+
+**Next Suggested Command:**
+
+To break down this plan into actionable tasks, you can run:
+`/speckit.tasks Break the plan into tasks`
+```
+
+**Validation:** Review `plan.md` and other docs. If satisfied, proceed.
