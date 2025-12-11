@@ -30,8 +30,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> findAllTasks() {
-        // This will be implemented later
-        return List.of();
+        return taskRepository.findAll();
     }
 
     @Override

@@ -53,15 +53,15 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T013 [P] [US2] Write repository test for finding all tasks.
-- [ ] T014 [P] [US2] Write service test for the `findAllTasks` logic.
-- [ ] T015 [P] [US2] Write controller integration test for the `GET /api/v1/tasks` endpoint.
+- [x] T013 [P] [US2] Write repository test for finding all tasks.
+- [x] T014 [P] [US2] Write service test for the `findAllTasks` logic.
+- [x] T015 [P] [US2] Write controller integration test for the `GET /api/v1/tasks` endpoint.
 
 ### Implementation for User Story 2
 
-- [ ] T016 [US2] Implement the `findAll` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
-- [ ] T017 [US2] Implement the `findAllTasks` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
-- [ ] T018 [US2] Implement the `findAllTasks` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+- [x] T016 [US2] Implement the `findAll` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
+- [x] T017 [US2] Implement the `findAllTasks` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T018 [US2] Implement the `findAllTasks` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
 
 ---
 

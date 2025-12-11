@@ -30,8 +30,8 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<List<Task>> getAllTasks() {
-        // This will be implemented later
-        return ResponseEntity.ok(List.of());
+        List<Task> tasks = taskService.findAllTasks();
+        return ResponseEntity.ok(tasks);
     }
 
     @PatchMapping("/{id}/complete")

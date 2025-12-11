@@ -52,8 +52,8 @@ public class JdbcTaskRepository implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        // This will be implemented in T016
-        return List.of();
+        String sql = "SELECT id, title, description, completed, created_at FROM tasks";
+        return jdbcTemplate.query(sql, this::mapRowToTask);
     }
 
     @Override

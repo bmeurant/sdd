@@ -12,10 +12,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -64,5 +67,26 @@ class TaskControllerTest {
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.title").doesNotExist());
+    }
+
+    @Test
+    void shouldGetAllTasks() throws Exception {
+        // Given
+        Task task1 = new Task(UUID.randomUUID(), "Task 1", "Description 1", false, ZonedDateTime.now());
+        Task task2 = new Task(UUID.randomUUID(), "Task 2", "Description 2", false, ZonedDateTime.now());
+        List<Task> mockTasks = Arrays.asList(task1, task2);
+
+        when(taskService.findAllTasks()).thenReturn(mockTasks);
+
+        // When & Then
+        mockMvc.perform(get("/api/v1/tasks")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(mockTasks.size()))
+                .andExpect(jsonPath("$[0].id").value(task1.getId().toString()))
+                .andExpect(jsonPath("$[0].title").value(task1.getTitle()))
+                .andExpect(jsonPath("$[1].id").value(task2.getId().toString()))
+                .andExpect(jsonPath("$[1].title").value(task2.getTitle()));
     }
 }

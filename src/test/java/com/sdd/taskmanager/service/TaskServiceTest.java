@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,5 +50,22 @@ class TaskServiceTest {
         assertThat(result.getDescription()).isEqualTo(description);
         assertThat(result.isCompleted()).isFalse();
         assertThat(result.getCreatedAt()).isEqualTo(createdAt);
+    }
+
+    @Test
+    void shouldFindAllTasks() {
+        // Given
+        Task task1 = new Task(UUID.randomUUID(), "Task 1", "Description 1", false, ZonedDateTime.now());
+        Task task2 = new Task(UUID.randomUUID(), "Task 2", "Description 2", false, ZonedDateTime.now());
+        List<Task> mockTasks = Arrays.asList(task1, task2);
+
+        when(taskRepository.findAll()).thenReturn(mockTasks);
+
+        // When
+        List<Task> result = taskService.findAllTasks();
+
+        // Then
+        assertThat(result).hasSize(2);
+        assertThat(result).containsExactlyInAnyOrder(task1, task2);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -52,5 +53,21 @@ class TaskRepositoryTest {
         assertThat(foundTask.get().getDescription()).isEqualTo(description);
         assertThat(foundTask.get().isCompleted()).isFalse();
         assertThat(foundTask.get().getCreatedAt()).isEqualToIgnoringNanos(createdTask.getCreatedAt()); // Compare ignoring nanos due to potential DB precision differences
+    }
+
+    @Test
+    void shouldFindAllTasks() {
+        // Given
+        Task task1 = new Task("Task 1", "Description 1");
+        Task task2 = new Task("Task 2", "Description 2");
+        taskRepository.create(task1);
+        taskRepository.create(task2);
+
+        // When
+        List<Task> tasks = taskRepository.findAll();
+
+        // Then
+        assertThat(tasks).hasSize(2);
+        assertThat(tasks).extracting(Task::getTitle).containsExactlyInAnyOrder("Task 1", "Task 2");
     }
 }
