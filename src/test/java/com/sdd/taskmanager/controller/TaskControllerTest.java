@@ -2,6 +2,7 @@ package com.sdd.taskmanager.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sdd.taskmanager.dto.CreateTaskRequest;
+import com.sdd.taskmanager.exception.TaskNotFoundException;
 import com.sdd.taskmanager.model.Task;
 import com.sdd.taskmanager.service.TaskService;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -88,5 +90,32 @@ class TaskControllerTest {
                 .andExpect(jsonPath("$[0].title").value(task1.getTitle()))
                 .andExpect(jsonPath("$[1].id").value(task2.getId().toString()))
                 .andExpect(jsonPath("$[1].title").value(task2.getTitle()));
+    }
+
+    @Test
+    void shouldCompleteTask() throws Exception {
+        // Given
+        UUID taskId = UUID.randomUUID();
+        Task completedTask = new Task(taskId, "Completed Task", "Description", true, ZonedDateTime.now());
+        when(taskService.completeTask(taskId)).thenReturn(completedTask);
+
+        // When & Then
+        mockMvc.perform(patch("/api/v1/tasks/{id}/complete", taskId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(taskId.toString()))
+                .andExpect(jsonPath("$.completed").value(true));
+    }
+
+    @Test
+    void shouldReturnNotFoundWhenCompletingNonExistentTask() throws Exception {
+        // Given
+        UUID nonExistentId = UUID.randomUUID();
+        when(taskService.completeTask(nonExistentId)).thenThrow(new TaskNotFoundException("Task not found"));
+
+        // When & Then
+        mockMvc.perform(patch("/api/v1/tasks/{id}/complete", nonExistentId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

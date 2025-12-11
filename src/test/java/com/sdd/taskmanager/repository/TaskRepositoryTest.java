@@ -13,7 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @JdbcTest
 @Import(JdbcTaskRepository.class) // Import the repository implementation
@@ -69,5 +71,50 @@ class TaskRepositoryTest {
         // Then
         assertThat(tasks).hasSize(2);
         assertThat(tasks).extracting(Task::getTitle).containsExactlyInAnyOrder("Task 1", "Task 2");
+    }
+
+    @Test
+    void shouldFindTaskById() {
+        // Given
+        Task task = new Task("Task to find", "Description to find");
+        Task createdTask = taskRepository.create(task);
+
+        // When
+        Optional<Task> foundTask = taskRepository.findById(createdTask.getId());
+
+        // Then
+        assertThat(foundTask).isPresent();
+        assertThat(foundTask.get().getId()).isEqualTo(createdTask.getId());
+        assertThat(foundTask.get().getTitle()).isEqualTo(createdTask.getTitle());
+    }
+
+    @Test
+    void shouldReturnEmptyWhenTaskNotFoundById() {
+        // Given
+        UUID nonExistentId = UUID.randomUUID();
+
+        // When
+        Optional<Task> foundTask = taskRepository.findById(nonExistentId);
+
+        // Then
+        assertThat(foundTask).isNotPresent();
+    }
+
+    @Test
+    void shouldUpdateTaskStatus() {
+        // Given
+        Task task = new Task("Task to update", "Description to update");
+        Task createdTask = taskRepository.create(task);
+        assertFalse(createdTask.isCompleted());
+
+        // When
+        createdTask.setCompleted(true);
+        taskRepository.update(createdTask);
+
+        // Then
+        Optional<Task> updatedTask = taskRepository.findById(createdTask.getId());
+        assertThat(updatedTask).isPresent();
+        assertTrue(updatedTask.get().isCompleted());
+        assertThat(updatedTask.get().getTitle()).isEqualTo(createdTask.getTitle());
     }
 }

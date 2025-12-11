@@ -1,5 +1,6 @@
 package com.sdd.taskmanager.service;
 
+import com.sdd.taskmanager.exception.TaskNotFoundException;
 import com.sdd.taskmanager.model.Task;
 import com.sdd.taskmanager.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
@@ -11,12 +12,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceTest {
@@ -66,6 +73,43 @@ class TaskServiceTest {
 
         // Then
         assertThat(result).hasSize(2);
-        assertThat(result).containsExactlyInAnyOrder(task1, task2);
+        assertThat(result).containsExactlyInAnyOrder(mockTasks.toArray(new Task[0]));
+    }
+
+    @Test
+    void shouldCompleteTask() {
+        // Given
+        UUID taskId = UUID.randomUUID();
+        Task existingTask = new Task(taskId, "Existing Task", "Description", false, ZonedDateTime.now());
+        Optional<Task> optionalTask = Optional.of(existingTask);
+
+        when(taskRepository.findById(taskId)).thenReturn(optionalTask);
+        doAnswer(invocation -> {
+            Task taskToUpdate = invocation.getArgument(0);
+            assertThat(taskToUpdate.isCompleted()).isTrue(); // Verify task is marked completed
+            return null; // void method returns null
+        }).when(taskRepository).update(any(Task.class));
+
+        // When
+        Task completedTask = taskService.completeTask(taskId);
+
+        // Then
+        assertThat(completedTask).isNotNull();
+        assertThat(completedTask.getId()).isEqualTo(taskId);
+        assertThat(completedTask.isCompleted()).isTrue();
+        verify(taskRepository, times(1)).findById(taskId);
+        verify(taskRepository, times(1)).update(any(Task.class));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenCompletingNonExistentTask() {
+        // Given
+        UUID nonExistentId = UUID.randomUUID();
+        when(taskRepository.findById(nonExistentId)).thenReturn(Optional.empty());
+
+        // When & Then
+        assertThrows(TaskNotFoundException.class, () -> taskService.completeTask(nonExistentId));
+        verify(taskRepository, times(1)).findById(nonExistentId);
+        verify(taskRepository, times(0)).update(any(Task.class)); // Ensure update is not called
     }
 }

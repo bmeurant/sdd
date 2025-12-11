@@ -1,5 +1,6 @@
 package com.sdd.taskmanager.service;
 
+import com.sdd.taskmanager.exception.TaskNotFoundException;
 import com.sdd.taskmanager.model.Task;
 import com.sdd.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Optional<Task> findTaskById(UUID id) {
-        // This will be implemented later
-        return Optional.empty();
+        return taskRepository.findById(id);
     }
 
     @Override
@@ -35,7 +35,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task completeTask(UUID id) {
-        // This will be implemented later
-        return null;
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task with id " + id + " not found"));
+        task.setCompleted(true);
+        taskRepository.update(task);
+        return task;
     }
 }

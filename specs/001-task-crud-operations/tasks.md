@@ -74,15 +74,15 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T019 [P] [US3] Write repository test for finding a task by ID and updating its status.
-- [ ] T020 [P] [US3] Write service test for the `completeTask` logic, including handling for non-existent tasks.
-- [ ] T021 [P] [US3] Write controller integration test for the `PATCH /api/v1/tasks/{id}/complete` endpoint.
+- [x] T019 [P] [US3] Write repository test for finding a task by ID and updating its status.
+- [x] T020 [P] [US3] Write service test for the `completeTask` logic, including handling for non-existent tasks.
+- [x] T021 [P] [US3] Write controller integration test for the `PATCH /api/v1/tasks/{id}/complete` endpoint.
 
 ### Implementation for User Story 3
 
-- [ ] T022 [US3] Implement the `findById` and `update` methods in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
-- [ ] T023 [US3] Implement the `completeTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
-- [ ] T024 [US3] Implement the `completeTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+- [x] T022 [US3] Implement the `findById` and `update` methods in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
+- [x] T023 [US3] Implement the `completeTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T024 [US3] Implement the `completeTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
 
 ---
 

@@ -58,7 +58,13 @@ public class JdbcTaskRepository implements TaskRepository {
 
     @Override
     public void update(Task task) {
-        // This will be implemented in T022
+        String sql = "UPDATE tasks SET title = ?, description = ?, completed = ? WHERE id = ?";
+        jdbcTemplate.update(sql,
+                task.getTitle(),
+                task.getDescription(),
+                task.isCompleted(),
+                task.getId().toString()
+        );
     }
 
     private Task mapRowToTask(ResultSet rs, int rowNum) throws SQLException {

@@ -1,6 +1,7 @@
 package com.sdd.taskmanager.controller;
 
 import com.sdd.taskmanager.dto.CreateTaskRequest;
+import com.sdd.taskmanager.exception.TaskNotFoundException;
 import com.sdd.taskmanager.model.Task;
 import com.sdd.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
@@ -36,7 +37,13 @@ public class TaskController {
 
     @PatchMapping("/{id}/complete")
     public ResponseEntity<Task> completeTask(@PathVariable UUID id) {
-        // This will be implemented later
-        return ResponseEntity.ok(null);
+        Task completedTask = taskService.completeTask(id);
+        return ResponseEntity.ok(completedTask);
+    }
+
+    @ExceptionHandler(TaskNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> handleTaskNotFoundException(TaskNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
