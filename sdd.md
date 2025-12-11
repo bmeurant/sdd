@@ -783,7 +783,7 @@ To proceed with Phase 3, you can run:
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
 
-#### 3. Implement Phase 3
+#### 4. Implement Phase 3
 
 ```bash
 /speckit.implement Implement the Phase 3: 'User Story 1' as per plan.md
@@ -835,7 +835,7 @@ To proceed with Phase 3, you can run:
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
 
-#### 3. Implement Phase 4
+#### 5. Implement Phase 4
 
 ```bash
 /speckit.implement Implement the Phase 4: 'User Story 2' as per plan.md
@@ -884,7 +884,7 @@ To proceed with Phase 3, you can run:
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
 
-#### 3. Implement Phase 5
+#### 6. Implement Phase 5
 
 ```bash
 /speckit.implement Implement the Phase 5: 'User Story 3' as per plan.md
@@ -929,6 +929,43 @@ I am now waiting for your instructions to proceed to the next phase or any other
 - [x] T022 [US3] Implement the `findById` and `update` methods in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java`.
 - [x] T023 [US3] Implement the `completeTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
 - [x] T024 [US3] Implement the `completeTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.
+
+#### 7. Implement Phase N
+
+```bash
+/speckit.implement Implement the Phase N: 'Polish & Cross-Cutting Concerns' as per plan.md
+```
+
+**Result**:
+
+```markdown
+✦ All tasks for Phase N: Polish & Cross-Cutting Concerns have been successfully completed.
+
+Phase N tasks completed:
+- [x] T025 [P] Add Javadoc to all new public methods in the controller, service, and repository packages.
+- [x] T026 [P] Configure detailed monitoring (logging, metrics) as per NFR-004.
+- [x] T027 Run mvn test and verify code coverage is >= 80%.
+- [x] T028 Validate all API endpoints using the quickstart.md guide.
+
+This marks the completion of the entire implementation plan for "Task CRUD Operations".
+
+I am now waiting for your instructions.
+```
+
+**Tasks**:
+
+```markdown
+//tasks.md
+
+## Phase N: Polish & Cross-Cutting Concerns
+
+- [x] T025 [P] Add Javadoc to all new public methods in the `controller`, `service`, and `repository` packages.
+- [x] T026 [P] Configure detailed monitoring (logging, metrics) as per NFR-004.
+- [x] T027 Run `mvn test` and verify code coverage is >= 80%.
+- [x] T028 Validate all API endpoints using the `quickstart.md` guide.
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
