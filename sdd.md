@@ -717,7 +717,7 @@ All checklists are complete. Proceeding with implementation...
 **Result**:
 
 ```markdown
-Phase 1: Setup has been successfully completed.
+**Phase 1: Setup has been successfully completed.**
 
 All initial project setup tasks have been executed, including:
 *   Initializing the Spring Boot project.
@@ -730,7 +730,7 @@ To proceed with Phase 2, you can run:
 `/speckit.implement Implement the Phase 2: 'Foundational' as per plan.md`
 ```
 
-Tasks have also been marked as complete:
+**Tasks** have also been marked as complete:
 
 ```markdown
 //tasks.md
@@ -742,6 +742,43 @@ Tasks have also been marked as complete:
 - [x] T001 Initialize a new Spring Boot project using Maven in the repository root.
 - [x] T002 Add required dependencies to `pom.xml`: `spring-boot-starter-web`, `spring-boot-starter-jdbc`, `h2`, `spring-boot-starter-test`, `jakarta.validation:jakarta.validation-api`.
 - [x] T003 Configure the H2 database and server port in `src/main/resources/application.properties`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.
+
+#### 3. Implement Phase 2
+
+```bash
+/speckit.implement Implement the Phase 2: 'Fundational' as per plan.md
+```
+
+**Result**:
+
+```markdown
+**Phase 2: Foundational has been successfully completed.** 
+
+The core data structure and database schema have been created.
+
+*   ✓ Task T004 completed: Created the 'Task' model class.
+*   ✓ Task T005 completed: Defined the database 
+
+**Next Step:** Implement **Phase 3: User Story 1 - Create a Task**. 
+
+To proceed with Phase 3, you can run:
+`/speckit.implement Implement the Phase 3: 'User Story 1' as per plan.md`
+```
+
+**Tasks**:
+
+```markdown
+//tasks.md
+
+## Phase 2: Foundational (Blocking Prerequisites)
+
+**Purpose**: Core data structure and database schema.
+
+- [x] T004 Create the `Task` model class in `src/main/java/com/sdd/taskmanager/model/Task.java`.
+- [x] T005 Define the database schema for the `tasks` table in `src/main/resources/schema.sql`.
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
