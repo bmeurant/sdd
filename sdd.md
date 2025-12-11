@@ -303,7 +303,7 @@ You can also see that a corresponding checklist has been created for your featur
 The checklist generated at the end of the `specify` command is your **Quality Gate**. If not satisfied, the workflow should be blocked.
 
 > [!IMPORTANT]
-> Sometimes, AI agents are "over-helpful" and might proceed if they find the spec clear enough despite the unchecked box. This is **Soft Enforcement**. In a strict CI/CD pipeline using the CLI directly, this would be a **Hard Error**. See [Step 8. Going Further: CI/CD Integration](#step-8-going-further-ci-cd-integration)
+> Sometimes, AI agents are "over-helpful" and might proceed if they find the spec clear enough despite the unchecked box. This is **Soft Enforcement**. In a strict CI/CD pipeline using the CLI directly, this would be a **Hard Error**. See [7. Going Further: CI/CD Integration](#7-going-further-cicd-integration)
 
 **Demonstration of Workflow Enforcement:**
 1.  **Action**: Deliberately **uncheck** one box in the generated checklist.
@@ -1012,3 +1012,45 @@ git merge 001-task-crud-operations
 # (Optional) Delete the feature branch
 git branch -d 001-task-crud-operations
 ```
+
+### 7. Going Further: CI/CD Integration
+
+The **Specify CLI** (`specify`) is also designed to run in your CI/CD pipelines (GitHub Actions, GitLab CI) to enforce **Hard Quality Gates**.
+
+**Why?** While the AI Agent might be lenient ("Soft Enforcement"), the CI pipeline is ruthless.
+
+**Example Workflow:**
+1.  You push code + artifacts (`spec.md`, `plan.md`).
+2.  Your CI Pipeline runs:
+    ```bash
+    # Fail build if implementation deviates from the plan
+    specify analyze --strict
+    ```
+3.  If the analysis finds "Hallucinations" (code not in plan) or "Omissions" (plan not in code), the build **fails**.
+
+This guarantees that your documentation (Spec/Plan) never drifts from your code, realizing the true promise of **Spec-Driven Development**.
+
+### Summary of Commands
+
+#### Main commands
+
+| Phase            | Command                 | Key File          | Role           |
+|:-----------------|:------------------------|:------------------|:---------------|
+| **Setup**        | `specify init`          | `.specify/`       | Initialization |
+| **Constitution** | `/speckit.constitution` | `constitution.md` | The Law        |
+| **Spec**         | `/speckit.specify`      | `spec.md`         | What to do     |
+| **Plan**         | `/speckit.plan`         | `plan.md`         | How to do it   |
+| **Task**         | `/speckit.tasks`        | `tasks.md`        | Action List    |
+| **Execute**      | `/speckit.implement`    | Source Code       | Implementation |
+
+#### Optional Commands for Enhanced Quality
+
+Use these commands to ensure robustness before moving to the next phase:
+
+| Command              | Description                                                    | When to use                                                  |
+|:---------------------|:---------------------------------------------------------------|:-------------------------------------------------------------|
+| `/speckit.clarify`   | Identifies underspecified areas.                               | **Before** `/speckit.plan`.                                  |
+| `/speckit.analyze`   | Checks consistency across artifacts.                           | **After** `/speckit.tasks`, **Before** `/speckit.implement`. |
+| `/speckit.checklist` | Generates quality checklists (e.g., "Unit tests for English"). | **Anytime** for validation.                                  |
+
+This workflow ensures every line of code is specified, planned, and validated, adhering to your strict architectural constraints.
