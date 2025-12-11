@@ -7,9 +7,9 @@
 
 **Purpose**: Project initialization and basic structure.
 
-- [ ] T001 Initialize a new Spring Boot project using Maven in the repository root.
-- [ ] T002 Add required dependencies to `pom.xml`: `spring-boot-starter-web`, `spring-boot-starter-jdbc`, `h2`, `spring-boot-starter-test`, `jakarta.validation:jakarta.validation-api`.
-- [ ] T003 Configure the H2 database and server port in `src/main/resources/application.properties`.
+- [x] T001 Initialize a new Spring Boot project using Maven in the repository root.
+- [x] T002 Add required dependencies to `pom.xml`: `spring-boot-starter-web`, `spring-boot-starter-jdbc`, `h2`, `spring-boot-starter-test`, `jakarta.validation:jakarta.validation-api`.
+- [x] T003 Configure the H2 database and server port in `src/main/resources/application.properties`.
 
 ---
 

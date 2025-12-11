@@ -15,7 +15,7 @@ tests/
 
 ## Commands
 
-# Add commands for Java 25
+# Add commands for Java 21
 
 ## Code Style
 
