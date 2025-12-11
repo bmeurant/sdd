@@ -17,21 +17,29 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: Java 25
+**Primary Dependencies**: Spring Boot 4, Maven
+**Storage**: H2 (In-Memory)
+**Testing**: JUnit 5, Mockito
+**Target Platform**: JVM
+**Project Type**: Web Application (REST API)
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, <200ms p95 latency or NEEDS CLARIFICATION]
+**Constraints**: [e.g., Adherence to Google Java Style, Conventional Commits or NEEDS CLARIFICATION]
+**Scale/Scope**: [e.g., Number of concurrent users, API endpoints or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **[ ] Adherence to Tech Stack**: Is the plan compatible with Java 25, Spring Boot 4, and Maven?
+- **[ ] Architectural Compliance**:
+  - **[ ] No ORMs**: Does the data access layer use `JdbcTemplate` exclusively?
+  - **[ ] Layered Architecture**: Does the design follow `Controller -> Service -> Repository` structure?
+  - **[ ] DTO Validation**: Is `jakarta.validation` used for input validation?
+- **[ ] Standards Compliance**:
+  - **[ ] Test Coverage**: Is there a clear path to achieving >= 80% test coverage with JUnit 5/Mockito?
+  - **[ ] Documentation**: Are all new public methods scheduled for Javadoc documentation?
+  - **[ ] Commit Style**: Will all commits adhere to the Conventional Commits specification?
 
 ## Project Structure
 

@@ -113,3 +113,12 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+## Constitutional Adherence *(mandatory)*
+
+*All requirements and user stories defined in this specification MUST adhere to the project constitution. Key considerations for this feature include:*
+
+- **Architecture**: How will the feature be implemented within the `Controller -> Service -> Repository` pattern? Will it require new DTOs with `jakarta.validation`?
+- **Data Access**: Does this feature require database interaction? If so, it MUST be implemented using `JdbcTemplate`.
+- **Testing**: What is the testing strategy to ensure the feature meets the >= 80% code coverage requirement?
+- **Documentation**: Are there new public methods that will require Javadoc?
