@@ -782,3 +782,55 @@ To proceed with Phase 3, you can run:
 ```
 
 **Validation:** Review, iterate if needed and edit generated code and configurations.
+
+#### 3. Implement Phase 3
+
+```bash
+/speckit.implement Implement the Phase 3: 'User Story 1' as per plan.md
+```
+
+**Result**:
+
+```markdown
+✦ All tasks for Phase 3: User Story 1 - Create a Task have been successfully completed and verified by tests.
+
+  Phase 3 tasks completed:
+   - [x] T006 [P] [US1] Write repository test for creating a task in src/test/java/com/sdd/taskmanager/repository/TaskRepositoryTest.java.
+   - [x] T007 [P] [US1] Write service test for the createTask logic in src/test/java/com/sdd/taskmanager/service/TaskServiceTest.java.
+   - [x] T008 [P] [US1] Write controller integration test for the POST /api/v1/tasks endpoint in
+     src/test/java/com/sdd/taskmanager/controller/TaskControllerTest.java.
+   - [x] T009 [P] [US1] Create the CreateTaskRequest DTO in src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java with validation annotations.
+   - [x] T010 [US1] Implement the create method in src/main/java/com/sdd/taskmanager/repository/TaskRepository.java using JdbcTemplate.
+   - [x] T011 [US1] Implement the createTask method in src/main/java/com/sdd/taskmanager/service/TaskService.java.
+   - [x] T012 [US1] Implement the createTask endpoint in src/main/java/com/sdd/taskmanager/controller/TaskController.java.
+
+  I am now waiting for your instructions to proceed to the next phase or any other commands you might have.
+```
+
+**Tasks**:
+
+```markdown
+//tasks.md
+
+## Phase 3: User Story 1 - Create a Task (Priority: P1) 🎯 MVP
+
+**Goal**: Allow users to create a new task.
+**Independent Test**: A user can call the `POST /api/v1/tasks` endpoint and verify the new task is created and returned with a 201 status.
+
+### Tests for User Story 1
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [x] T006 [P] [US1] Write repository test for creating a task in `src/test/java/com/sdd/taskmanager/repository/TaskRepositoryTest.java`.
+- [x] T007 [P] [US1] Write service test for the `createTask` logic in `src/test/java/com/sdd/taskmanager/service/TaskServiceTest.java`.
+- [x] T008 [P] [US1] Write controller integration test for the `POST /api/v1/tasks` endpoint in `src/test/java/com/sdd/taskmanager/controller/TaskControllerTest.java`.
+
+### Implementation for User Story 1
+
+- [x] T009 [P] [US1] Create the `CreateTaskRequest` DTO in `src/main/java/com/sdd/taskmanager/dto/CreateTaskRequest.java` with validation annotations.
+- [x] T010 [US1] Implement the `create` method in `src/main/java/com/sdd/taskmanager/repository/TaskRepository.java` using `JdbcTemplate`.
+- [x] T011 [US1] Implement the `createTask` method in `src/main/java/com/sdd/taskmanager/service/TaskService.java`.
+- [x] T012 [US1] Implement the `createTask` endpoint in `src/main/java/com/sdd/taskmanager/controller/TaskController.java`.
+```
+
+**Validation:** Review, iterate if needed and edit generated code and configurations.
