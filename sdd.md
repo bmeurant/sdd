@@ -1030,7 +1030,7 @@ The **Specify CLI** (`specify`) is also designed to run in your CI/CD pipelines 
 
 This guarantees that your documentation (Spec/Plan) never drifts from your code, realizing the true promise of **Spec-Driven Development**.
 
-### Summary of Commands
+### 8. Summary of Commands
 
 #### Main commands
 
@@ -1054,3 +1054,28 @@ Use these commands to ensure robustness before moving to the next phase:
 | `/speckit.checklist` | Generates quality checklists (e.g., "Unit tests for English"). | **Anytime** for validation.                                  |
 
 This workflow ensures every line of code is specified, planned, and validated, adhering to your strict architectural constraints.
+
+### 9. Conclusion
+
+By the end of this tutorial, we have not only discovered the principles of **Spec-Driven Development (SDD)**, but we have also experienced firsthand the workflow powered by **Speckit**.
+
+This process has allowed for the formalization of what is often implicit:
+*   **Living and Enforceable Documentation**: We end up with detailed specifications and technical plans that are not dead documents, but "architectural blueprints" used by the AI to build the code.
+*   **Structure and Methodology**: The approach forces you to ask the right questions at the right time. Analysis tools (`clarify`, `analyze`) act as safety nets, capturing inconsistencies before they become bugs.
+
+#### A Necessary Investment
+
+> [!IMPORTANT]
+> This rigor comes at a cost. For SDD to deliver on its promise of quality and velocity, simply installing a CLI is not enough.
+
+ It is a strategic investment:
+
+*   **Absolute Rigor**: SDD does not compensate for fuzzy thinking. On the contrary, it exacerbates it. A weak constitution or an ambiguous specification will drive the AI into a wall, faster and harder.
+*   **Training and Appropriation**: Teams must upskill not only on the tools but also on **requirement formalization**. Knowing how to write a good spec becomes as critical as knowing how to write a `for` loop.
+*   **The Shift Towards Design**: We observe a major shift in effort. The time "lost" not coding immediately is reinvested in **design** and **engineering**. The developer becomes less of a "code grinder" and more of a **solution architect** steering a synthetic workforce.
+
+#### The Future of Assisted Development
+
+SDD is a pragmatic response, among others, to the urgent need to frame *"vibe coding"* — the trend of coding by feeling with AI. There is still a vast territory to explore to tame the non-determinism of LLMs (advanced prompt engineering, fine-tuning specialized models, autonomous verification agents).
+
+But one thing is certain: to scale for a team or an enterprise project, AI cannot remain a simple chatbot in the corner of the IDE. It must be integrated into a **controlled, auditable, and reproducible** process. That is exactly what Spec-Driven Development proposes.
