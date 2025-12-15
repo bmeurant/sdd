@@ -1091,10 +1091,10 @@ This process has allowed for the formalization of what is often implicit:
 
 *   **Absolute Rigor**: SDD does not compensate for fuzzy thinking. On the contrary, it exacerbates it. A weak constitution or an ambiguous specification will drive the AI into a wall, faster and harder.
 *   **Training and Appropriation**: Teams must upskill not only on the tools but also on **requirement formalization**. Knowing how to write a good spec becomes as critical as knowing how to write a `for` loop.
-*   **The Shift Towards Design**: We observe a major shift in effort. The time "lost" not coding immediately is reinvested in **design** and **engineering**. The developer becomes less of a "code grinder" and more of a **solution architect** steering a synthetic workforce.
+*   **The Shift Towards Design**: We observe a major shift in effort. The time saved not typing boilerplate code is reinvested in **design**, **architecture**, and **review**. The developer can rely on AI for the routine implementation while focusing their expertise on the specifications and the critical, complex parts of the code.
 
 #### The Future of Assisted Development
 
-SDD is a pragmatic response, among others, to the urgent need to frame *"vibe coding"* — the trend of coding by feeling with AI. There is still a vast territory to explore to tame the non-determinism of LLMs (advanced prompt engineering, fine-tuning specialized models, autonomous verification agents).
+SDD is a structured response, among others, to the urgent need to frame *"vibe coding"* — the trend of coding by feeling with AI. There is still a vast territory to explore to tame the non-determinism of LLMs (advanced prompt engineering, fine-tuning specialized models, autonomous verification agents).
 
 But one thing is certain: to scale for a team or an enterprise project, AI cannot remain a simple chatbot in the corner of the IDE. It must be integrated into a **controlled, auditable, and reproducible** process. That is exactly what Spec-Driven Development proposes.
