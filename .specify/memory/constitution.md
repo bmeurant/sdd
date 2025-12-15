@@ -15,8 +15,8 @@ Sync Impact Report:
 ## Core Principles
 
 ### I. Tech Stack
-- **Language**: Java 25
-- **Framework**: Spring Boot 4
+- **Language**: Java 21
+- **Framework**: Spring Boot 3.5.8
 - **Database**: H2 (In-Memory)
 - **Build Tool**: Maven
 
