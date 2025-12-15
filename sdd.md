@@ -2,14 +2,31 @@
 
 This tutorial guides you step-by-step through setting up and using **Spec-Driven Development (SDD)**. We will use **Specify CLI** (referred to as "speckit") to orchestrate the workflow and **Gemini CLI** for intelligent content and code generation.
 
-## 1. Key Concepts of SDD
+## 1. Key Concepts
 
-SDD structures AI-assisted development into 4 distinct phases, each producing a validated artifact before moving to the next:
+### What is Spec-Driven Development (SDD)?
+AI has ushered in the era of "**Vibe Coding**"—where developers can build features at lightning speed by iterating naturally with LLMs. However, while this approach is incredibly productive for prototypes or solo scripts, it often struggles to scale. As complexity grows, "vibes" alone can't guarantee consistency, security, or maintainability across large systems and multiple teams.
 
-1.  **Constitution** (`constitution.md`): The non-negotiable rules. Command: `/speckit.constitution`
-2.  **Specify** (`spec.md`): Functional requirements. Command: `/speckit.specify`
-3.  **Plan** (`plan.md`): Technical breakdown. Command: `/speckit.plan`
-4.  **Task & Execute** (`tasks.md`): Actionable tasks. Command: `/speckit.tasks` then `/speckit.implement`
+**Spec-Driven Development (SDD)** is the bridge that allows you to **scale Vibe Coding**. It retains the explosive productivity of AI assistance but channels it through a rigorous structure. By formalizing specifications before implementation, SDD ensures that the speed of AI doesn't come at the cost of engineering quality, making it possible to build robust, enterprise-grade software with the agility of a hackathon project.
+
+This approach ensures:
+*   **Scalability**: Validating architecture upfront allows multiple teams to work in parallel without friction.
+*   **Quality**: Issues are caught in the design phase, not during debugging.
+*   **Efficiency**: AI agents work better with clear, structured context.
+
+### The Speckit Workflow
+In this tutorial, we use **Specify CLI (Speckit)** to implement SDD. Speckit orchestrates this philosophy into 4 distinct phases, ensuring a rigorous "Gated Flow":
+
+![Speckit Workflow](./images/speckit-workflow.png)
+
+1.  **Constitution** (`constitution.md`): The non-negotiable rules and tech stack.
+    *   *Command:* `/speckit.constitution`
+2.  **Specify** (`spec.md`): The functional requirements and user value.
+    *   *Command:* `/speckit.specify`
+3.  **Plan** (`plan.md`): The technical breakdown and implementation strategy.
+    *   *Command:* `/speckit.plan`
+4.  **Task & Execute** (`tasks.md`): The actionable checklist and code generation.
+    *   *Command:* `/speckit.tasks` then `/speckit.implement`
 
 ## 2. Prerequisites and Installation
 
@@ -199,7 +216,8 @@ We define the feature functionally.
 
 **Result**: Gemini should answer something like this:
 
-*Note: Remember that this is a LLM so answers can be different.*
+> [!NOTE]
+> Remember that this is a LLM so answers can be different.
 
 ```markdown
 ✦ I am ready for your command. Please describe the feature you would like me to specify.
@@ -249,7 +267,8 @@ Users need a simple way to manage their daily tasks (create, list, complete) via
 
 > [!IMPORTANT]
 > **Git Workflow**: This command automatically creates a new feature branch (e.g., `001-task-crud-operations`).
-> **Action**: Switch to this branch (`git checkout 001-task-crud-operations`) if not already done automatically. You will stay on this branch for the Plan, Task, and Execute phases.
+
+**Action**: Switch to this branch (`git checkout 001-task-crud-operations`) if not already done automatically. You will stay on this branch for the Plan, Task, and Execute phases.
 
 This created a `spec.md` file. See [spec.md](./specs/001-task-crud-operations/spec.md)
 
